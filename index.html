@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wil-by-Wil</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <a class="logo" href="#top">Wil-by-Wil</a>
+
+        <nav class="navbar">
+            <a href="#sec1">Diff</a>
+            <a href="#sec2">Def</a>
+            <a href="#sec3">Guess</a>
+            <a href="#sec4">Sound</a>
+            <a href="#sec5">Ex</a>
+            <a href="#sec6">Specs</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="carousel-section" id="sec1">
+            <div id="carousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                </div>
+
+                <div class="carousel-inner">
+                    <div class="carousel-item active" data-bs-interval="5000">
+                        <img src="assets/images/8bit.png" class="d-block w-100" alt="Landscape image with smooth color gradients">
+                        <div class="carousel-caption d-none d-md-block">
+                            <p class="bit-depth">8-bit per channel - 256 shades per channel</p>
+                            <h3>Every pixel stores color</h3>
+                            <p>Every pixel stores red, green, and blue as numbers. Together, these three channels create the colors in an image.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item" data-bs-interval="5000">
+                        <img src="assets/images/4bit.png" class="d-block w-100" alt="Landscape image with fewer color shades">
+                        <div class="carousel-caption d-none d-md-block">
+                            <p class="bit-depth">4-bit per channel - 16 shades per channel</p>
+                            <h3>Fewer bits mean fewer shades</h3>
+                            <p>When each channel uses fewer bits, it can represent fewer shades of red, green, and blue.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item" data-bs-interval="5000">
+                        <img src="assets/images/2bit.png" class="d-block w-100" alt="Landscape image with strong color banding">
+                        <div class="carousel-caption d-none d-md-block">
+                            <p class="bit-depth">2-bit per channel - 4 shades per channel</p>
+                            <h3>See what breaks</h3>
+                            <p>With fewer shades to choose from, smooth areas can show harsh bands and lose subtle color detail.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </section>
+
+        <section class="quantization-section" id="sec2">
+            <div class="quantization-content">
+                <div class="quantization-copy">
+                    <h2>Quantization is rounding</h2>
+                    <p>A channel value runs from 0 to 255. With <em>n</em> bits there are 2<sup>n</sup> allowed levels, and every value snaps to the closest one. The dashed line is the smooth original. The colored steps are what survives.</p>
+                    <p>Standard 24-bit color uses 8 bits per channel, which is 256 levels per channel and about 16.7 million colors. An old 256-color GIF instead stores one number per pixel that points into a lookup table of 256 chosen colors.</p>
+                </div>
+
+                <div class="quantization-graph">
+                    <img src="assets/images/quantization.png" alt="Stepped quantization graph compared with a smooth diagonal line">
+                </div>
+            </div>
+        </section>
+
+        <section class="guess-section" id="sec3">
+            <div class="guess-content">
+                <div class="guess-introduction">
+                    <h2>Guess the bits</h2>
+                    <p>Each round shows an image at a secret bit depth of 2, 4, or 8 bits per channel. Look for flat bands in the sky and blocky hills, then pick your answer.</p>
+                </div>
+
+                <div class="guess-game">
+                    <img id="guess-image" src="assets/images/4bit.png" alt="Pixelated sunset image for the bit-depth guessing game">
+
+                    <div class="guess-controls">
+                        <h3>How many bits per channel?</h3>
+                        <div class="bit-buttons" aria-label="Choose the bit depth">
+                            <button type="button" class="bit-button" data-answer="2">2</button>
+                            <button type="button" class="bit-button" data-answer="4">4</button>
+                            <button type="button" class="bit-button" data-answer="8">8</button>
+                        </div><br>
+                        <p id="guess-message">Pick a number to lock in your guess.</p>
+                        <button type="button" id="next-image" class="next-image" disabled>Next image</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="sound-section" id="sec4">
+            <div class="sound-content">
+                <h2>Sound gets quantized too</h2>
+                <p>Audio stores each sample as a number, and bit depth works the same way. A CD uses 16 bits, which gives 65,536 levels. Fewer bits mean coarser steps, and the rounding error you hear as hiss. Each bit drop adds about 6 dB of noise.</p>
+
+                <div class="sound-buttons" aria-label="Choose the audio bit depth">
+                    <button type="button" class="sound-bit-button" data-audio="assets/audio/16bit.mp3">16 bits</button>
+                    <button type="button" class="sound-bit-button" data-audio="assets/audio/8bit.mp3">8 bits</button>
+                    <button type="button" class="sound-bit-button" data-audio="assets/audio/4bit.mp3">4 bits</button>
+                    <button type="button" class="sound-bit-button" data-audio="assets/audio/2bit.mp3">2 bits</button>
+                </div>
+                <audio id="sound-player" controls></audio>
+            </div>
+        </section>
+
+        <section class="examples-section" id="sec5">
+            <div class="examples-content">
+                <h2>Where you have seen this</h2>
+                <div class="examples-grid">
+                    <article>
+                        <h3>GIF files</h3>
+                        <p>A palette of at most 256 colors is why some old web images look posterized.</p>
+                    </article>
+                    <article>
+                        <h3>Streaming video</h3>
+                        <p>Dark skies often show banding when a stream squeezes its color range.</p>
+                    </article>
+                    <article>
+                        <h3>Retro consoles</h3>
+                        <p>Limited palettes gave early games their chunky look.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="specs-section" id="sec6">
+            <div class="specs-content">
+                <h2>Technical media spec</h2>
+                <p class="specs-intro">The original image starts at 8 bits per channel and is quantized down to 4 bits and then 2 bits. The same idea is used for the audio: the original 16-bit audio is quantized down through 8 bits and 4 bits to 2 bits.</p>
+
+                <div class="table-wrapper">
+                    <table class="media-spec-table">
+                        <thead>
+                            <tr>
+                                <th>Asset name and format</th>
+                                <th>Original -&gt; compressed</th>
+                                <th>Color depth / quantization</th>
+                                <th>Compression algorithm</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>8bit.png</td>
+                                <td>8-bit source -&gt; 2,414 KB</td>
+                                <td>Original image: 8 bits per channel</td>
+                                <td>PNG DEFLATE, lossless</td>
+                            </tr>
+                            <tr>
+                                <td>4bit.png</td>
+                                <td>8-bit source -&gt; 720 KB</td>
+                                <td>Quantized to 4 bits per channel</td>
+                                <td>PNG DEFLATE, lossless</td>
+                            </tr>
+                            <tr>
+                                <td>2bit.png</td>
+                                <td>8-bit source -&gt; 266 KB</td>
+                                <td>Quantized to 2 bits per channel</td>
+                                <td>PNG DEFLATE, lossless</td>
+                            </tr>
+                            <tr>
+                                <td>16bit.mp3</td>
+                                <td>16-bit source -&gt; 17 KB</td>
+                                <td>Original 16-bit audio</td>
+                                <td>MP3 lossy perceptual compression</td>
+                            </tr>
+                            <tr>
+                                <td>8bit.mp3</td>
+                                <td>16-bit source -&gt; 9 KB</td>
+                                <td>Quantized to 8-bit audio</td>
+                                <td>MP3 lossy perceptual compression</td>
+                            </tr>
+                            <tr>
+                                <td>4bit.mp3</td>
+                                <td>16-bit source -&gt; 10 KB</td>
+                                <td>Quantized to 4-bit audio</td>
+                                <td>MP3 lossy perceptual compression</td>
+                            </tr>
+                            <tr>
+                                <td>2bit.mp3</td>
+                                <td>16-bit source -&gt; 8 KB</td>
+                                <td>Quantized to 2-bit audio</td>
+                                <td>MP3 lossy perceptual compression</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="compression-explanation">
+                    <p>PNG uses DEFLATE to make image files smaller by finding repeated patterns. It is lossless, so no pixels are thrown away. MP3 uses lossy perceptual compression, which removes some sounds people are less likely to notice. This makes audio files smaller, but the compressed audio is not exactly the same as the original.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

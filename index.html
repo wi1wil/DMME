@@ -15,16 +15,21 @@
         <a class="logo" href="#top">Wil-by-Wil</a>
 
         <nav class="navbar">
-            <a href="#sec1">Diff</a>
-            <a href="#sec2">Def</a>
+            <a href="#sec1" aria-label="Difference"><span class="nav-label-full">Difference</span><span class="nav-label-compact">Diff</span></a>
+            <a href="#sec2" aria-label="Definition"><span class="nav-label-full">Definition</span><span class="nav-label-compact">Def</span></a>
             <a href="#sec3">Guess</a>
             <a href="#sec4">Sound</a>
-            <a href="#sec5">Ex</a>
+            <a href="#sec5" aria-label="Examples"><span class="nav-label-full">Examples</span><span class="nav-label-compact">Ex</span></a>
+            <a href="#sec6">Specs</a>
         </nav>
     </header>
 
     <main>
         <section class="carousel-section" id="sec1">
+            <div class="carousel-introduction">
+                <p>Press the next button to see how the image changes as the bit depth decreases.</p>
+            </div>
+
             <div id="carousel" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-indicators">
                     <button type="button" data-bs-target="#carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -41,7 +46,7 @@
                             <p>Every pixel stores red, green, and blue as numbers. Together, these three channels create the colors in an image.</p>
                         </div>
                     </div>
-                    <div class="carousel-item" data-bs-interval="5000">
+                    <div class="carousel-item" data-bs-interval="5000"> 
                         <img src="assets/images/4bit.png" class="d-block w-100" alt="Landscape image with fewer color shades">
                         <div class="carousel-caption d-none d-md-block">
                             <p class="bit-depth">4-bit per channel - 16 shades per channel</p>
